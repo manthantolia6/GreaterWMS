@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include, re_path
-from django.views.generic.base import TemplateView
+from django.views.generic.base import RedirectView
 from django.contrib.staticfiles.views import serve
 from django.views.static import serve as static_serve
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
@@ -14,7 +14,7 @@ def return_static(request, path, insecure=True, **kwargs):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='dist/spa/index.html')),
+    path('', RedirectView.as_view(url='/api/docs/', permanent=False)),
     path('myip/', views.myip, name='myip'),
     path('asn/', include('asn.urls')),
     path('dn/', include('dn.urls')),
@@ -46,10 +46,6 @@ urlpatterns = [
     path('uploadfile/', include('uploadfile.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'^favicon\.ico$', views.favicon, name='favicon'),
-    re_path('^css/.*$', views.css, name='css'),
-    re_path('^js/.*$', views.js, name='js'),
-    re_path('^statics/.*$', views.statics, name='statics'),
-    re_path('^fonts/.*$', views.fonts, name='fonts'),
     re_path(r'^robots.txt', views.robots, name='robots'),
     re_path(r'^media/(?P<path>.*)$', static_serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', return_static, name='static')

@@ -38,17 +38,17 @@ pip install bomiot
 
 ## 🎯 定制化能力
 
-**前后端分离架构**
+**API 后端**
 
-系统采用 Django REST Framework 后端 + Quasar (Vue.js) 前端的分离架构，API 遵循 RESTful 协议。这种设计使得**添加功能或修改业务逻辑**非常方便，前后端可以独立演进。
+本仓库提供 Django REST Framework 后端、REST 风格 API 和交互式 API 文档。客户端可以独立开发和部署，并通过 HTTP 调用后端。
 
 **模块化业务设计**
 
 系统按模块组织业务逻辑（ASN 收货、DN 发货、库存、库位等），每个模块职责清晰。你可以**只修改或扩展需要的模块**，而不影响其他功能。
 
-**多端统一与灵活扩展**
+**灵活的客户端集成**
 
-OneAPP 理念让同一套后端可以服务于 PDA、手机 APP、桌面端和网站等多种终端。前端基于 Quasar 框架，代码可编译为 Web、Android、PDA 程序，甚至微信小程序。
+API 可供网站、手机、PDA、ERP 或其他客户端使用。本仓库不包含这些前端客户端。
 
 ## 📦 实际定制场景
 
@@ -80,20 +80,9 @@ pip install -r requirements.txt
 daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application
 ```
 
-### 前端开发
-
-```bash
-cd templates
-npm install
-quasar dev
-```
-
-**请求地址配置**：`templates/public/statics/baseurl.txt`
-
 ### 技术栈
 
 - **后端**：Python 3.8+ / Django 3.1+ / Django REST Framework
-- **前端**：Quasar 1.7.2+ / Vue 2.6+
 - **数据库**：SQLite（默认）/ MySQL / PostgreSQL
 
 ## 📬 联系方式

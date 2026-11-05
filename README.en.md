@@ -38,17 +38,17 @@ pip install bomiot
 
 ## 🎯 Customization Capabilities
 
-**Frontend-Backend Separation Architecture**
+**API-First Backend**
 
-The system uses a Django REST Framework backend + Quasar (Vue.js) frontend separated architecture, with APIs following the RESTful protocol. This design makes it very convenient to **add features or modify business logic**, allowing the frontend and backend to evolve independently.
+This repository provides a Django REST Framework backend with REST-style APIs and interactive API documentation. Clients can be developed and deployed independently and connect to the backend over HTTP.
 
 **Modular Business Design**
 
 The system organizes business logic by module (ASN receiving, DN shipping, inventory, storage locations, etc.), with each module having clear responsibilities. You can **modify or extend only the modules you need** without affecting other features.
 
-**Unified Multi-Platform and Flexible Extension**
+**Flexible Client Integration**
 
-The OneAPP concept allows the same backend to serve multiple terminals such as PDAs, mobile apps, desktop, and websites. The frontend is based on the Quasar framework, and the code can be compiled into Web, Android, and PDA programs, and even WeChat Mini Programs.
+The APIs can be consumed by web, mobile, PDA, ERP, or other client applications. This repository does not include those frontend clients.
 
 ## 📦 Real-World Customization Scenarios
 
@@ -80,20 +80,9 @@ pip install -r requirements.txt
 daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application
 ```
 
-### Frontend Development
-
-```bash
-cd templates
-npm install
-quasar dev
-```
-
-**Request address configuration**: `templates/public/statics/baseurl.txt`
-
 ### Tech Stack
 
 - **Backend**: Python 3.8+ / Django 3.1+ / Django REST Framework
-- **Frontend**: Quasar 1.7.2+ / Vue 2.6+
 - **Database**: SQLite (default) / MySQL / PostgreSQL
 
 ## 📬 Contact

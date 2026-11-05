@@ -12,3 +12,8 @@ bfg.jar
 error.log
 server.log
 /.history/
+.DS_Store
+.opencode
+.venv38
+opencode.json
+problem.txt

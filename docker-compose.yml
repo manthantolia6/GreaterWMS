@@ -2,24 +2,6 @@ version: '3.9'
 networks:
   basic:
 services:
-  front:
-    # build:
-    #   context: ./
-    #   dockerfile: Dockerfile
-    #   target: front
-    container_name: greaterwms_front
-    image: greaterwms/greaterwms:front
-    restart: always
-    privileged: true
-    ports:
-      - '8080:8080'
-    depends_on:
-      - backend
-    volumes:
-      - ./templates:/GreaterWMS/templates:rw
-      - ./web_start.sh:/GreaterWMS/templates/web_start.sh
-    networks:
-      - basic
   backend:
     # build:
     #   context: ./

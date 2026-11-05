@@ -38,17 +38,17 @@ pip install bomiot
 
 ## 🎯 Customization Capabilities
 
-**Frontend-Backend Separation Architecture**
+**API-First Backend**
 
-The system uses a Django REST Framework backend + Quasar (Vue.js) frontend separated architecture, with APIs following the RESTful protocol. This design makes it very convenient to **add features or modify business logic**, allowing the frontend and backend to evolve independently.
+This repository provides a Django REST Framework backend with REST-style APIs and interactive API documentation. Clients can be developed and deployed independently and connect to the backend over HTTP.
 
 **Modular Business Design**
 
 The system organizes business logic by module (ASN receiving, DN shipping, inventory, storage locations, etc.), with each module having clear responsibilities. You can **modify or extend only the modules you need** without affecting other features.
 
-**Unified Multi-Platform and Flexible Extension**
+**Flexible Client Integration**
 
-The OneAPP concept allows the same backend to serve multiple terminals such as PDAs, mobile apps, desktop, and websites. The frontend is based on the Quasar framework, and the code can be compiled into Web, Android, and PDA programs, and even WeChat Mini Programs.
+The APIs can be consumed by web, mobile, PDA, ERP, or other client applications. This repository does not include those frontend clients.
 
 ## 📦 Real-World Customization Scenarios
 
@@ -63,6 +63,33 @@ GreaterWMS has been successfully customized and deployed across multiple industr
 **Cross-Border E-Commerce**: Developed international logistics and customs declaration integration interfaces to adapt to the special process needs of cross-border business.
 
 **Manufacturing**: Satisfied component traceability needs through batch management and FIFO control, and integrated with MES systems to implement pull-based material management. After an automotive parts enterprise adopted it, inventory turnover improved by 25%.
+
+## 🧭 Functionality in This Codebase
+
+GreaterWMS is a warehouse operations system that tracks goods from receiving through storage, inventory checks, picking, and shipping. This repository contains the Django REST Framework backend; frontend clients are not included.
+
+### Core warehouse workflows
+
+- **Receiving:** Create advance shipping notices (ASNs), record received quantities, sort goods, move them into bins, and review shortages or overages.
+- **Shipping:** Create delivery notes (DNs), release orders, prepare picking work, record picked quantities, dispatch shipments, and capture proof of delivery.
+- **Inventory:** View stock by item or bin, inspect empty and occupied bins, and track quantities in states such as on-hand, held, damaged, inbound, picking, and back order.
+- **Cycle counting:** Run cycle counts or manual counts, record physical quantities, and compare them with expected quantities.
+- **Barcode scanning:** The API includes scanner-related endpoints that external mobile/PDA clients can use.
+
+### Supporting features
+
+- **Catalog and warehouse setup:** Manage goods and product attributes, warehouses, bins, bin sizes, and bin properties.
+- **Business partners and staff:** Maintain suppliers, customers, companies, staff, staff types, drivers, and dispatch records.
+- **Operations and reporting:** View inbound/outbound dashboards, count records, and customer proof-of-delivery screens.
+- **Data exchange and finance-related records:** Import or export selected master and operational data; maintain capital/item records and transportation fee rates.
+
+Backend API endpoints are grouped by Django app, with ASN, DN, stock, and cycle-count routes in `asn/urls.py`, `dn/urls.py`, `stock/urls.py`, and `cyclecount/urls.py`. Open `/api/docs/` for the interactive API documentation.
+
+### Scope notes
+
+- The source present in this repository reports version **2.1.48** in the Django settings. The README's GreaterWMS 3.0/Bomiot announcement may describe a newer release than this checkout.
+- Cycle counts record quantity differences, but this codebase does not appear to include a dedicated lost-item investigation ticket workflow with assignment, investigation notes, and resolution outcomes.
+- The finance-related screens cover capital and transportation fees; they should not be mistaken for a full accounting system.
 
 ## 🧭 Quick Start
 
@@ -80,20 +107,9 @@ pip install -r requirements.txt
 daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application
 ```
 
-### Frontend Development
-
-```bash
-cd templates
-npm install
-quasar dev
-```
-
-**Request address configuration**: `templates/public/statics/baseurl.txt`
-
 ### Tech Stack
 
 - **Backend**: Python 3.8+ / Django 3.1+ / Django REST Framework
-- **Frontend**: Quasar 1.7.2+ / Vue 2.6+
 - **Database**: SQLite (default) / MySQL / PostgreSQL
 
 ## 📬 Contact
