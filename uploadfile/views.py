@@ -453,7 +453,8 @@ class CapitalfileViewSet(views.APIView):
                     df = pd.read_csv(files)
                 else:
                     df = pd.read_excel(files)
-                data_list = df.drop_duplicates(keep='first', inplace=True)
+                df.drop_duplicates(keep='first', inplace=True)
+                data_list = df.values
                 for d in range(len(data_list)):
                     data_validate(str(data_list[d]))
                 for i in range(len(data_list)):
@@ -507,7 +508,8 @@ class FreightfileViewSet(views.APIView):
                     df = pd.read_csv(files)
                 else:
                     df = pd.read_excel(files)
-                data_list = df.drop_duplicates(keep='first', inplace=True).values
+                df.drop_duplicates(keep='first', inplace=True)
+                data_list = df.values
                 for d in range(len(data_list)):
                     data_validate(str(data_list[d]))
                 for i in range(len(data_list)):
@@ -988,7 +990,8 @@ class CapitalfileAddViewSet(views.APIView):
                     df = pd.read_csv(files)
                 else:
                     df = pd.read_excel(files)
-                data_list = df.drop_duplicates(keep='first', inplace=True)
+                df.drop_duplicates(keep='first', inplace=True)
+                data_list = df.values
                 for d in range(len(data_list)):
                     data_validate(str(data_list[d]))
                 for i in range(len(data_list)):
@@ -1048,7 +1051,8 @@ class FreightfileAddViewSet(views.APIView):
                     df = pd.read_csv(files)
                 else:
                     df = pd.read_excel(files)
-                data_list = df.drop_duplicates(keep='first', inplace=True).values
+                df.drop_duplicates(keep='first', inplace=True)
+                data_list = df.values
                 for d in range(len(data_list)):
                     data_validate(str(data_list[d]))
                 for i in range(len(data_list)):

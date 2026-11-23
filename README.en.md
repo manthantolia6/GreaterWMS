@@ -80,6 +80,28 @@ pip install -r requirements.txt
 daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application
 ```
 
+### Database migrations and tests
+
+For a new database, create the schema with:
+
+```bash
+python manage.py migrate
+```
+
+The initial migrations were added after this project had already been deployed without migration history. Before migrating an existing database, back it up and use Django's initial-migration adoption mode:
+
+```bash
+python manage.py migrate --fake-initial
+```
+
+Review the output and verify the existing schema before proceeding; `--fake-initial` is safe only when the existing tables match the initial migration schema. Backend tests use Django's separate test database. The test runner refuses an explicitly configured test database name that resolves to the application database.
+
+Run the backend tests with:
+
+```bash
+python manage.py test
+```
+
 ### Tech Stack
 
 - **Backend**: Python 3.8+ / Django 3.1+ / Django REST Framework

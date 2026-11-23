@@ -94,6 +94,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'greaterwms.wsgi.application'
+TEST_RUNNER = 'greaterwms.test_runner.IsolatedDatabaseTestRunner'
 CSRF_COOKIE_SAMESITE = None
 
 # Database
